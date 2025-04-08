@@ -5,7 +5,7 @@
 @portrait Miisan demo/Assets/girl.png {fusion_pixel_font.ttf,15} {fusion_pixel_font.ttf,15}
 @portrait Eiisan demo/Assets/girl2.png {fusion_pixel_font.ttf,15} {fusion_pixel_font.ttf,15}
 @portrait Wiisan demo/Assets/girl3.png
-@charata osagechan osagechan_overworld.json osagechan_overworld.png walk6 
+@charata osagechan osagechan_overworld.json osagechan_overworld.png walk6 {fusion_pixel_font.ttf,15} {fusion_pixel_font.ttf,15}
 
 [start]
 osagechan: {frametag:frightened}I'm frightened!{frametag:walk6} Now I'm walking.

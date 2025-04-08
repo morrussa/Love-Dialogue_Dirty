@@ -376,12 +376,6 @@ Parser.parseTextWithTags = parseTextWithTags
 
 --     return lines, characters, scenes
 -- end
-
---- Parses a dialogue file and returns a table of lines
---- @param filePath string
---- @return string[]
---- @return table<string, LD_Character>
---- @return table
 function Parser.parseFile(filePath)
     local lines = {}
     local currentLine = 1
@@ -501,6 +495,8 @@ function Parser.parseFile(filePath)
                 local jsonFile = words[3]
                 local imageFile = words[4]
                 local initialTag = words[5]
+                local nameFontStr = #words >= 6 and words[6] or nil
+                local fontStr = #words >= 7 and words[7] or nil
 
                 -- 构建完整的文件路径
                 local charactaDir = resourcePaths.characta or "demo/Assets/characta"
@@ -514,6 +510,36 @@ function Parser.parseFile(filePath)
                     local character = LD_Character.new(characterName, nil)
                     character.type = "charata"       -- 标记为动画类型
                     character.animation = animation  -- 存储 Peachy 动画对象
+                    
+                    -- 设置字体，与 @portrait 一致
+                    local fontBasePath = resourcePaths.font[1] or "demo/Assets/font"
+                    local nameFontFile, nameFontSize = parseFontString(nameFontStr)
+                    local fontFile, fontSize = parseFontString(fontStr)
+                    
+                    -- 设置名称字体 (nameFont)
+                    if nameFontFile and nameFontSize then
+                        local fontKey = nameFontFile .. "_" .. nameFontSize
+                        if not ResourceManager.fonts[fontKey] then
+                            local fullPath = fontBasePath .. "/" .. nameFontFile
+                            ResourceManager.fonts[fontKey] = love.graphics.newFont(fullPath, nameFontSize)
+                        end
+                        character.nameFont = ResourceManager.fonts[fontKey]
+                    else
+                        character.nameFont = love.graphics.newFont(12)
+                    end
+                    
+                    -- 设置正文字体 (font)
+                    if fontFile and fontSize then
+                        local fontKey = fontFile .. "_" .. fontSize
+                        if not ResourceManager.fonts[fontKey] then
+                            local fullPath = fontBasePath .. "/" .. fontFile
+                            ResourceManager.fonts[fontKey] = love.graphics.newFont(fullPath, fontSize)
+                        end
+                        character.font = ResourceManager.fonts[fontKey]
+                    else
+                        character.font = love.graphics.newFont(12)
+                    end
+                    
                     characters[characterName] = character
                 else
                     print("Failed to load animation for " .. characterName .. ": " .. (animation or "Unknown error"))

@@ -10,6 +10,7 @@ function love.load()
     PluginManager:register(DebugPlugin)
     local config = {
         boxHeight = 150,
+        character_type = true,
         portraitEnabled = true,
         boxColor = {0.1, 0.1, 0.2, 0.9},
         textColor = {1, 1, 1, 1},
