@@ -37,7 +37,7 @@ from https://github.com/Miisan-png/Love-Dialogue
   - Auto-layout capabilities for different screen sizes
   - Adjustable fade animations
   - Configurable typewriter effect
-**Sound Effect**:
+- **Sound Effect**:
   - {sound:guitar.wav}
 
 
