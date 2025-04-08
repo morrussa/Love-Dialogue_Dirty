@@ -267,8 +267,75 @@ function LoveDialogue:setAutoAdvanceDelay(seconds)
     self.autoAdvanceDelay = seconds
 end
 
+-- function LoveDialogue:update(dt)
+--     if not self.isActive then return end
+--     -- Let plugins modify update behavior if needed
+--     local modifiedDt = dt
+--     for _, plugin in ipairs(self.plugins) do
+--         if plugin.modifyDeltaTime then
+--             modifiedDt = plugin.modifyDeltaTime(self, self.pluginData[plugin.name], modifiedDt)
+--         end
+--     end
+    
+--     -- Let plugins know we're updating
+--     self:triggerPluginEvent("onBeforeUpdate", modifiedDt)
+--     if self.state == "fading_in" then
+--         self.animationTimer = self.animationTimer + modifiedDt
+--         self.boxOpacity = math.min(self.animationTimer / self.fadeInDuration, 1)
+--         if self.animationTimer >= self.fadeInDuration then
+--             self.state = "active"
+--             self:triggerPluginEvent("onFadeInComplete")
+--         end
+--     elseif self.state == "active" then
+--         if not self.choiceMode then
+--             local currentFullText = self.lines[self.currentLine].text
+--             if self.displayedText ~= currentFullText then
+--                 if self.waitTimer > 0 then
+--                     self.waitTimer = self.waitTimer - modifiedDt
+--                 else
+--                     self.typewriterTimer = self.typewriterTimer + modifiedDt
+--                     if self.typewriterTimer >= self.typingSpeed then
+--                         self.typewriterTimer = 0
+--                         local nextCharIndex = utf8.len(self.displayedText) + 1
+--                         local nextPos = utf8.offset(currentFullText, nextCharIndex)
+--                         local endPos = utf8.offset(currentFullText, nextCharIndex + 1) or #currentFullText + 1
+--                         local newChar = string.sub(currentFullText, nextPos, endPos - 1)
+--                         self.displayedText = self.displayedText .. newChar
+--                         -- Let plugins know we added a character
+--                         self:triggerPluginEvent("onCharacterTyped", newChar, self.displayedText)
+--                     end
+--                 end
+--             elseif self.autoAdvance then
+--                 -- Text is fully displayed, start auto-advance timer
+--                 self.autoAdvanceTimer = self.autoAdvanceTimer + modifiedDt
+--                 if self.autoAdvanceTimer >= self.autoAdvanceDelay then
+--                     self.autoAdvanceTimer = 0
+--                     self:advance()
+--                 end
+--             end
+--         end
+--     elseif self.state == "fading_out" then
+--         self.animationTimer = self.animationTimer + modifiedDt
+--         self.boxOpacity = 1 - math.min(self.animationTimer / self.fadeOutDuration, 1)
+--         if self.animationTimer >= self.fadeOutDuration then
+--             self.isActive = false
+--             self.state = "inactive"
+--             self:triggerPluginEvent("onFadeOutComplete")
+--             self:destroy() -- Clean up resources after fade out
+--         end
+--     end
+
+--     if self.autoLayoutEnabled then
+--         self:adjustLayout()
+--     end
+    
+--     -- Let plugins know we finished updating
+--     self:triggerPluginEvent("onAfterUpdate", modifiedDt)
+-- end
+
 function LoveDialogue:update(dt)
     if not self.isActive then return end
+    
     -- Let plugins modify update behavior if needed
     local modifiedDt = dt
     for _, plugin in ipairs(self.plugins) do
@@ -279,6 +346,14 @@ function LoveDialogue:update(dt)
     
     -- Let plugins know we're updating
     self:triggerPluginEvent("onBeforeUpdate", modifiedDt)
+    
+    -- 更新所有动画角色
+    for _, charData in pairs(self.characters) do
+        if charData.type == "charata" and charData.animation then
+            charData.animation:update(modifiedDt)
+        end
+    end
+    
     if self.state == "fading_in" then
         self.animationTimer = self.animationTimer + modifiedDt
         self.boxOpacity = math.min(self.animationTimer / self.fadeInDuration, 1)
@@ -301,7 +376,15 @@ function LoveDialogue:update(dt)
                         local endPos = utf8.offset(currentFullText, nextCharIndex + 1) or #currentFullText + 1
                         local newChar = string.sub(currentFullText, nextPos, endPos - 1)
                         self.displayedText = self.displayedText .. newChar
-                        -- Let plugins know we added a character
+                        -- 处理 frametag 效果
+                        for _, effect in ipairs(self.effects) do
+                            if effect.type == "frametag" and effect.startIndex == nextCharIndex then
+                                local character = self.lines[self.currentLine].character
+                                if self.characters[character] and self.characters[character].type == "charata" then
+                                    self.characters[character].animation:setTag(effect.content)
+                                end
+                            end
+                        end
                         self:triggerPluginEvent("onCharacterTyped", newChar, self.displayedText)
                     end
                 end
@@ -409,35 +492,33 @@ end
 
 --     -- Draw character name if present
 --     if self.currentCharacter and self.currentCharacter ~= "" then
---         -- love.graphics.setFont(self.nameFont)
+--         local nameFont = self.characters[self.currentCharacter].nameFont or self.nameFont or love.graphics.newFont(12)
 --         local nameColor = self.characters[self.currentCharacter].nameColor or self.nameColor
 --         love.graphics.setColor(nameColor.r or nameColor[1], nameColor.g or nameColor[2], 
 --                              nameColor.b or nameColor[3], self.boxOpacity)
---         love.graphics.print(self.currentCharacter,nameFont, textX, textY)
---         textY = textY + self.nameFont:getHeight() + 5
+--         love.graphics.print(self.currentCharacter, nameFont, textX, textY)
+--         textY = textY + nameFont:getHeight() + 5
 --     end
 
---     -- Set font for dialogue text
---     -- love.graphics.setFont(self.font)
-    
 --     -- Draw choices or text based on mode
+--     local textFont = self.currentCharacter and self.characters[self.currentCharacter].font or self.font or love.graphics.newFont(12)
 --     if self.choiceMode then
 --         for i, choice in ipairs(self.lines[self.currentLine].choices) do
 --             local prefix = (i == self.selectedChoice) and "> " or "  "
---             local x = textX + self.font:getWidth(prefix)
+--             local x = textX + textFont:getWidth(prefix)
 --             local y = textY + (i - 1) * self.lineSpacing
             
 --             local choiceColor = (i == self.selectedChoice) and {1, 1, 0, self.boxOpacity} or {1, 1, 1, self.boxOpacity}
 --             love.graphics.setColor(unpack(choiceColor))
---             love.graphics.print(prefix, textX, y)
+--             love.graphics.print(prefix, textFont, textX, y)
             
 --             if choice.parsedText then
---                 self:drawFormattedText(choice.parsedText, x, y, choiceColor, choice.effects)
+--                 self:drawFormattedText(choice.parsedText, textFont, x, y, choiceColor, choice.effects)
 --             end
 --         end
 --     else
 --         -- Draw regular text with formatting and effects
---         self:drawFormattedText(self.displayedText, textX, textY, 
+--         self:drawFormattedText(self.displayedText, textFont, textX, textY, 
 --             {self.textColor[1], self.textColor[2], self.textColor[3], self.textColor[4] * self.boxOpacity},
 --             self.effects, textLimit)
 --     end
@@ -465,24 +546,26 @@ function LoveDialogue:draw()
     local windowWidth, windowHeight = love.graphics.getDimensions()
     local boxWidth = windowWidth - 2 * self.padding
 
-    -- Draw character portrait for vertical mode
+    -- Draw character portrait or animation for vertical mode
     if self.character_type then
-        if self.portraitEnabled and self.currentCharacter and self.characters[self.currentCharacter]:hasPortrait() then
-            local portrait = self.characters[self.currentCharacter]:getExpression(self.currentExpression)
-            local sw, sh = portrait.quad:getTextureDimensions()
-            
-            -- Calculate position
-            local portraitX = (windowWidth - sw)/2
-            local portraitY = windowHeight - sh
-
-            love.graphics.setColor(1, 1, 1, self.boxOpacity)
-            self.characters[self.currentCharacter]:draw(
-                self.currentExpression,
-                portraitX,
-                portraitY,
-                1,
-                1
-            )
+        if self.portraitEnabled and self.currentCharacter and self.characters[self.currentCharacter] then
+            local charData = self.characters[self.currentCharacter]
+            if charData.type == "charata" and charData.animation then
+                -- 渲染动画（垂直模式）
+                local animWidth, animHeight = charData.animation:getDimensions()
+                local portraitX = (windowWidth - animWidth) / 2
+                local portraitY = windowHeight - animHeight
+                love.graphics.setColor(1, 1, 1, self.boxOpacity)
+                charData.animation:draw(portraitX, portraitY)
+            elseif charData.type == "portrait" and charData:hasPortrait() then
+                -- 渲染静态肖像（垂直模式）
+                local portrait = charData:getExpression(self.currentExpression)
+                local sw, sh = portrait.quad:getTextureDimensions()
+                local portraitX = (windowWidth - sw) / 2
+                local portraitY = windowHeight - sh
+                love.graphics.setColor(1, 1, 1, self.boxOpacity)
+                charData:draw(self.currentExpression, portraitX, portraitY, 1, 1)
+            end
         end
     end
 
@@ -492,7 +575,6 @@ function LoveDialogue:draw()
         love.graphics.rectangle("fill", self.padding, windowHeight - self.boxHeight - self.padding, boxWidth, self.boxHeight)
     else
         if self.patch then
-            -- Set color for 9-patch drawing
             love.graphics.setColor(1, 1, 1, self.boxOpacity)
             ninePatch.draw(self.patch, self.padding, windowHeight - self.boxHeight - self.padding, boxWidth, self.boxHeight)
         end
@@ -502,30 +584,33 @@ function LoveDialogue:draw()
     local textY = windowHeight - self.boxHeight - self.padding + self.padding
     local textLimit = boxWidth - (self.padding * 3)
 
-    -- Determine portrait visibility based on character_type
+    -- Determine portrait/animation visibility based on character_type
     local hasPortrait = false
-    if not self.character_type then
-        hasPortrait = self.portraitEnabled and self.currentCharacter and self.characters[self.currentCharacter]:hasPortrait()
+    if not self.character_type and self.currentCharacter and self.characters[self.currentCharacter] then
+        hasPortrait = self.portraitEnabled and (self.characters[self.currentCharacter]:hasPortrait() or self.characters[self.currentCharacter].type == "charata")
     end
 
-    -- Draw horizontal portrait mode
+    -- Draw horizontal portrait or animation mode
     if hasPortrait and not self.character_type then
-        local portrait = self.characters[self.currentCharacter]:getExpression(self.currentExpression)
+        local charData = self.characters[self.currentCharacter]
         local portraitX = self.padding * 2
         local portraitY = windowHeight - self.boxHeight - self.padding + self.padding
-        local sw, sh = portrait.quad:getTextureDimensions()
-
-        love.graphics.setColor(0, 0, 0, self.boxOpacity * 0.5)
-        love.graphics.rectangle("fill", portraitX, portraitY, self.portraitSize, self.portraitSize)
         
-        love.graphics.setColor(1, 1, 1, self.boxOpacity)
-        self.characters[self.currentCharacter]:draw(
-            self.currentExpression, 
-            portraitX, 
-            portraitY, 
-            self.portraitSize / sw, 
-            self.portraitSize / sh
-        )
+        if charData.type == "charata" and charData.animation then
+            -- 渲染动画（水平模式）
+            love.graphics.setColor(0, 0, 0, self.boxOpacity * 0.5)
+            love.graphics.rectangle("fill", portraitX, portraitY, self.portraitSize, self.portraitSize)
+            love.graphics.setColor(1, 1, 1, self.boxOpacity)
+            charData.animation:draw(portraitX, portraitY, 0, self.portraitSize / charData.animation:getWidth(), self.portraitSize / charData.animation:getHeight())
+        elseif charData.type == "portrait" and charData:hasPortrait() then
+            -- 渲染静态肖像（水平模式）
+            local portrait = charData:getExpression(self.currentExpression)
+            local sw, sh = portrait.quad:getTextureDimensions()
+            love.graphics.setColor(0, 0, 0, self.boxOpacity * 0.5)
+            love.graphics.rectangle("fill", portraitX, portraitY, self.portraitSize, self.portraitSize)
+            love.graphics.setColor(1, 1, 1, self.boxOpacity)
+            charData:draw(self.currentExpression, portraitX, portraitY, self.portraitSize / sw, self.portraitSize / sh)
+        end
         textX = self.padding * 3 + self.portraitSize
         textLimit = boxWidth - self.portraitSize - (self.padding * 4)
     end
@@ -577,6 +662,52 @@ function LoveDialogue:draw()
     self:triggerPluginEvent("onAfterDraw")
 end
 
+-- function LoveDialogue:drawFormattedText(text, font, startX, startY, baseColor, effects, textLimit)
+--     local x = startX
+--     local y = startY
+    
+--     textLimit = textLimit or math.huge
+    
+--     for pos, char in utf8.codes(text) do
+--         local char = utf8.char(char)
+--         local color = {baseColor[1], baseColor[2], baseColor[3], baseColor[4]}
+--         local offset = {x = 0, y = 0, scale = 1}
+    
+--         if effects then
+--             for _, effect in ipairs(effects) do
+--                 -- if pos == effect.startIndex and effect.type == "sound" then
+--                 --     local sound = ResourceManager:newSound(self.instanceId, effect.content, "sound_"..effect.content)
+--                 --     if sound then
+--                 --         sound:play()
+--                 --     end
+--                 if pos >= effect.startIndex and pos <= effect.endIndex then
+--                     local effectFunc = TextEffects[effect.type]
+--                     if effectFunc then
+--                         local effectColor, effectOffset = effectFunc(effect, char, pos, love.timer.getTime())
+--                         if effectColor then color = effectColor end
+--                         offset.x = offset.x + (effectOffset.x or 0)
+--                         offset.y = offset.y + (effectOffset.y or 0)
+--                         offset.scale = offset.scale * (effectOffset.scale or 1)
+--                     end
+--                 end
+--             end
+--         end
+
+--         local charTypeSpacing = isCJK(char) and self.letterSpacingCJK or self.letterSpacingLatin
+        
+--         -- Handle text wrapping if a limit is specified
+--         if textLimit and x + font:getWidth(char) * offset.scale + charTypeSpacing > startX + textLimit then
+--             x = startX
+--             y = y + self.lineSpacing
+--         end
+
+--         -- Draw the character with effects applied
+--         love.graphics.setColor(unpack(color))
+--         love.graphics.print(char, font, x + offset.x, y + offset.y, 0, offset.scale, offset.scale)
+--         x = x + font:getWidth(char) * offset.scale + charTypeSpacing
+--     end
+-- end
+
 function LoveDialogue:drawFormattedText(text, font, startX, startY, baseColor, effects, textLimit)
     local x = startX
     local y = startY
@@ -590,11 +721,6 @@ function LoveDialogue:drawFormattedText(text, font, startX, startY, baseColor, e
     
         if effects then
             for _, effect in ipairs(effects) do
-                -- if pos == effect.startIndex and effect.type == "sound" then
-                --     local sound = ResourceManager:newSound(self.instanceId, effect.content, "sound_"..effect.content)
-                --     if sound then
-                --         sound:play()
-                --     end
                 if pos >= effect.startIndex and pos <= effect.endIndex then
                     local effectFunc = TextEffects[effect.type]
                     if effectFunc then
@@ -604,6 +730,10 @@ function LoveDialogue:drawFormattedText(text, font, startX, startY, baseColor, e
                         offset.y = offset.y + (effectOffset.y or 0)
                         offset.scale = offset.scale * (effectOffset.scale or 1)
                     end
+                end
+                -- 在此处处理音效播放（如果需要实时触发）
+                if effect.type == "sound" and pos == effect.startIndex and effect.soundObject then
+                    effect.soundObject:play()
                 end
             end
         end
@@ -622,47 +752,6 @@ function LoveDialogue:drawFormattedText(text, font, startX, startY, baseColor, e
         x = x + font:getWidth(char) * offset.scale + charTypeSpacing
     end
 end
-
--- function LoveDialogue:drawFormattedText(text, startX, startY, baseColor, effects, textLimit)
---     local x = startX
---     local y = startY
-    
---     textLimit = textLimit or math.huge
-    
---     for pos, char in utf8.codes(text) do
---         local char = utf8.char(char)
---         local color = {baseColor[1], baseColor[2], baseColor[3], baseColor[4]}
---         local offset = {x = 0, y = 0, scale = 1}
-    
---         if effects then
---             for _, effect in ipairs(effects) do
---                 if pos >= effect.startIndex and pos <= effect.endIndex then
---                     local effectFunc = TextEffects[effect.type]
---                     if effectFunc then
---                         local effectColor, effectOffset = effectFunc(effect, char, pos, love.timer.getTime())
---                         if effectColor then color = effectColor end
---                         offset.x = offset.x + (effectOffset.x or 0)
---                         offset.y = offset.y + (effectOffset.y or 0)
---                         offset.scale = offset.scale * (effectOffset.scale or 1)
---                     end
---                 end
---             end
---         end
-
---         local charTypeSpacing = isCJK(char) and self.letterSpacingCJK or self.letterSpacingLatin
-        
---         -- Handle text wrapping if a limit is specified
---         if textLimit and x + self.font:getWidth(char) * offset.scale + charTypeSpacing > startX + textLimit then
---             x = startX
---             y = y + self.lineSpacing
---         end
-
---         -- Draw the character with effects applied
---         love.graphics.setColor(unpack(color))
---         love.graphics.print(char,textFont, x + offset.x, y + offset.y, 0, offset.scale, offset.scale)
---         x = x + self.font:getWidth(char) * offset.scale + charTypeSpacing
---     end
--- end
 
 function LoveDialogue:advance()
     if self.state ~= "active" then

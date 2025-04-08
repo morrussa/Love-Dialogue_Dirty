@@ -1,12 +1,15 @@
 @resource font demo/Assets/font
 @resource sound demo/Assets/sound
+@resource characta demo/Assets/characta
 
 @portrait Miisan demo/Assets/girl.png {fusion_pixel_font.ttf,15} {fusion_pixel_font.ttf,15}
 @portrait Eiisan demo/Assets/girl2.png {fusion_pixel_font.ttf,15} {fusion_pixel_font.ttf,15}
 @portrait Wiisan demo/Assets/girl3.png
+@charata osagechan osagechan_overworld.json osagechan_overworld.png walk6 
 
 [start]
-Miisan: Hello there! I'm Miisan.{sound:guitar.wav} Welcome to the {sound:guitar.wav}LoveDialogue engine demo{sound:叮.ogg}!
+osagechan: {frametag:frightened}I'm frightened!{frametag:walk6} Now I'm walking.
+Miisan: {frametag:frightened}Hello there! I'm Miisan.{sound:guitar.wav} Welcome to the {sound:guitar.wav}LoveDialogue engine demo{sound:叮.ogg}!
 Eiisan: And I'm Eiisan! We're here to demonstrate how this dialogue system works.
 Wiisan: Don't forget about me! I'm Wiisan. Together we'll show you the features of this engine.
 

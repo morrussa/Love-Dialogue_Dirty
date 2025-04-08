@@ -1,0 +1,411 @@
+{ "frames": [
+   {
+    "filename": "osagechan_overworld 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 1.aseprite",
+    "frame": { "x": 146, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 2.aseprite",
+    "frame": { "x": 292, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 3.aseprite",
+    "frame": { "x": 438, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 4.aseprite",
+    "frame": { "x": 584, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 5.aseprite",
+    "frame": { "x": 730, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 6.aseprite",
+    "frame": { "x": 876, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 7.aseprite",
+    "frame": { "x": 1022, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 8.aseprite",
+    "frame": { "x": 1168, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 9.aseprite",
+    "frame": { "x": 1314, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 10.aseprite",
+    "frame": { "x": 1460, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 11.aseprite",
+    "frame": { "x": 1606, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 12.aseprite",
+    "frame": { "x": 1752, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 13.aseprite",
+    "frame": { "x": 1898, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 14.aseprite",
+    "frame": { "x": 2044, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 15.aseprite",
+    "frame": { "x": 2190, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 16.aseprite",
+    "frame": { "x": 2336, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 17.aseprite",
+    "frame": { "x": 2482, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 18.aseprite",
+    "frame": { "x": 2628, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 19.aseprite",
+    "frame": { "x": 2774, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 20.aseprite",
+    "frame": { "x": 2920, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 21.aseprite",
+    "frame": { "x": 3066, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 22.aseprite",
+    "frame": { "x": 3212, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 23.aseprite",
+    "frame": { "x": 3358, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 70
+   },
+   {
+    "filename": "osagechan_overworld 24.aseprite",
+    "frame": { "x": 3504, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 70
+   },
+   {
+    "filename": "osagechan_overworld 25.aseprite",
+    "frame": { "x": 3650, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 70
+   },
+   {
+    "filename": "osagechan_overworld 26.aseprite",
+    "frame": { "x": 3796, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 27.aseprite",
+    "frame": { "x": 3942, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 28.aseprite",
+    "frame": { "x": 4088, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 200
+   },
+   {
+    "filename": "osagechan_overworld 29.aseprite",
+    "frame": { "x": 4234, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 30.aseprite",
+    "frame": { "x": 4380, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 31.aseprite",
+    "frame": { "x": 4526, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 32.aseprite",
+    "frame": { "x": 4672, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 33.aseprite",
+    "frame": { "x": 4818, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 34.aseprite",
+    "frame": { "x": 4964, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 35.aseprite",
+    "frame": { "x": 5110, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 36.aseprite",
+    "frame": { "x": 5256, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 37.aseprite",
+    "frame": { "x": 5402, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 38.aseprite",
+    "frame": { "x": 5548, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 65535
+   },
+   {
+    "filename": "osagechan_overworld 39.aseprite",
+    "frame": { "x": 5694, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 40.aseprite",
+    "frame": { "x": 5840, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 41.aseprite",
+    "frame": { "x": 5986, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 100
+   },
+   {
+    "filename": "osagechan_overworld 42.aseprite",
+    "frame": { "x": 6132, "y": 0, "w": 146, "h": 86 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 146, "h": 86 },
+    "sourceSize": { "w": 146, "h": 86 },
+    "duration": 65535
+   }
+ ],
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.1-dev",
+  "image": "/home/zy/桌面/精灵图/osagechan_overworld.png",
+  "format": "RGBA8888",
+  "size": { "w": 6278, "h": 86 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "walk6", "from": 0, "to": 7, "direction": "forward" },
+   { "name": "walk7", "from": 8, "to": 14, "direction": "forward" },
+   { "name": "frightened", "from": 15, "to": 18, "direction": "forward" },
+   { "name": "attack6", "from": 19, "to": 30, "direction": "forward" },
+   { "name": "gethit", "from": 31, "to": 31, "direction": "reverse" },
+   { "name": "idle2", "from": 32, "to": 36, "direction": "reverse" },
+   { "name": "idle3", "from": 37, "to": 38, "direction": "reverse" },
+   { "name": "cancel_attack", "from": 39, "to": 42, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}
