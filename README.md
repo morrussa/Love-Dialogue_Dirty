@@ -2,7 +2,9 @@
 
 ![LoveDialogue Logo](repo/Logo.svg)
 
-LoveDialogue is a powerful and flexible dialogue game engine for LÖVE (Love2D) games, featuring rich text effects, branching dialogues, character portraits, and extensive customization options.
+DirtyLoveDialogue is a powerful and flexible LÖVE (Love2D) game dialogue game engine with rich text effects, branching dialogues, character portraits and extensive customization options. Also, the code is dirty and could probably use a massive refactoring
+
+from https://github.com/Miisan-png/Love-Dialogue
 
 ## Features
 
