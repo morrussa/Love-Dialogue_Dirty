@@ -1,7 +1,5 @@
 # LoveDialogue
 
-![LoveDialogue Logo](repo/Logo.svg)
-
 DirtyLoveDialogue is a powerful and flexible LÖVE (Love2D) game dialogue game engine with rich text effects, branching dialogues, character portraits and extensive customization options. Also, the code is dirty and could probably use a massive refactoring
 
 from https://github.com/Miisan-png/Love-Dialogue
@@ -16,7 +14,7 @@ from https://github.com/Miisan-png/Love-Dialogue
   - Bold text with configurable intensity
   - Italic text with direction control
 - **Comprehensive character system**:
-  - Character portraits with expression support
+  - Character portraits with expression**(using animation tag)**support
   - Both standalone portraits and sprite sheet support
   - Custom character colors and name colors
 - **Flexible UI options**:
@@ -39,6 +37,9 @@ from https://github.com/Miisan-png/Love-Dialogue
   - Auto-layout capabilities for different screen sizes
   - Adjustable fade animations
   - Configurable typewriter effect
+**Sound Effect**:
+  - {sound:guitar.wav}
+
 
 ## Showcase
 ![LoveDialogue Showcase](repo/Showcase.png)
