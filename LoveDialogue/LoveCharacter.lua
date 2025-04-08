@@ -47,19 +47,20 @@ function LD_Character.new(name, defaultExpression)
 end
 
 -- Weird workaround to get the number of rows and columns from a quad
-local function getRowsAndColsFromQuad(quad, texture)
-    local imageWidth = texture:getWidth()
-    local imageHeight = texture:getHeight()
-    local _,_,quadWidth, quadHeight = quad:getViewport()
-    return imageWidth / quadWidth, imageHeight / quadHeight
-end
+-- local function getRowsAndColsFromQuad(quad, texture)
+--     local imageWidth = texture:getWidth()
+--     local imageHeight = texture:getHeight()
+--     local _,_,quadWidth, quadHeight = quad:getViewport()
+--     return imageWidth / quadWidth, imageHeight / quadHeight
+-- end
 
 function LD_Character:draw(expressionName, posX, posY, sizeX, sizeY)
     local expression = self:getExpression(expressionName)
     if not expression then return end
     
-    local rows, cols = getRowsAndColsFromQuad(expression.quad, expression.texture)
-    love.graphics.draw(expression.texture, expression.quad, posX, posY, 0, sizeX * rows, sizeY * cols)
+    -- local rows, cols = getRowsAndColsFromQuad(expression.quad, expression.texture)
+    -- love.graphics.draw(expression.texture, expression.quad, posX, posY, 0, sizeX * rows, sizeY * cols)
+    love.graphics.draw(expression.texture, expression.quad, posX, posY, 0, sizeX , sizeY )
 end
 
 function LD_Character:getExpression(name)
@@ -75,9 +76,9 @@ end
 -- Add an expression to the character
 -- @param name string
 -- @param expression Expression
-function LD_Character:addExpression(name, expression)
-    self.expressions[name] = expression
-end
+-- function LD_Character:addExpression(name, expression)
+--     self.expressions[name] = expression
+-- end
 
 -- Load an expression from a path
 -- @param name string
@@ -86,70 +87,70 @@ end
 -- @param cols number
 -- @param index number
 -- @return boolean
-function LD_Character:loadExpression(name, path, rows, cols, index)
-    if not self.instanceId then
-        print("Warning: Cannot load expression without an instance ID")
-        return false
-    end
+-- function LD_Character:loadExpression(name, path, rows, cols, index)
+--     if not self.instanceId then
+--         print("Warning: Cannot load expression without an instance ID")
+--         return false
+--     end
     
-    -- Use ResourceManager to load the image
-    local image = ResourceManager:newImage(
-        self.instanceId, 
-        path, 
-        "char_" .. self.name .. "_expr_" .. name
-    )
+--     -- Use ResourceManager to load the image
+--     local image = ResourceManager:newImage(
+--         self.instanceId, 
+--         path, 
+--         "char_" .. self.name .. "_expr_" .. name
+--     )
     
-    if not image then
-        return false
-    end
+--     if not image then
+--         return false
+--     end
     
-    local imageWidth = image:getWidth()
-    local imageHeight = image:getHeight()
-    local quadWidth = imageWidth / cols
-    local quadHeight = imageHeight / rows
+--     local imageWidth = image:getWidth()
+--     local imageHeight = image:getHeight()
+--     local quadWidth = imageWidth / cols
+--     local quadHeight = imageHeight / rows
     
-    -- Calculate position based on index
-    local row = math.floor((index - 1) / cols)
-    local col = (index - 1) % cols
+--     -- Calculate position based on index
+--     local row = math.floor((index - 1) / cols)
+--     local col = (index - 1) % cols
     
-    -- Create the quad using ResourceManager
-    local quad = ResourceManager:newQuad(
-        self.instanceId,
-        col * quadWidth, row * quadHeight, 
-        quadWidth, quadHeight,
-        imageWidth, imageHeight,
-        "char_" .. self.name .. "_quad_" .. name
-    )
+--     -- Create the quad using ResourceManager
+--     local quad = ResourceManager:newQuad(
+--         self.instanceId,
+--         col * quadWidth, row * quadHeight, 
+--         quadWidth, quadHeight,
+--         imageWidth, imageHeight,
+--         "char_" .. self.name .. "_quad_" .. name
+--     )
     
-    if not quad then
-        return false
-    end
+--     if not quad then
+--         return false
+--     end
     
-    -- Add the expression
-    self:addExpression(name, {
-        quad = quad,
-        texture = image
-    })
+--     -- Add the expression
+--     self:addExpression(name, {
+--         quad = quad,
+--         texture = image
+--     })
     
-    return true
-end
+--     return true
+-- end
 
 -- Set the default expression for the character
 -- @param expression Expression
-function LD_Character:setDefaultExpression(expression)
-    self.expressions.Default = expression
-end
+-- function LD_Character:setDefaultExpression(expression)
+--     self.expressions.Default = expression
+-- end
 
 -- Clear all expressions (useful for cleanupp)
-function LD_Character:clearExpressions()
-    self.expressions = {}
-end
+-- function LD_Character:clearExpressions()
+--     self.expressions = {}
+-- end
 
 -- Set the owning dialogue instance
 -- @param instanceId string
-function LD_Character:setInstanceId(instanceId)
-    self.instanceId = instanceId
-end
+-- function LD_Character:setInstanceId(instanceId)
+--     self.instanceId = instanceId
+-- end
 
 
 

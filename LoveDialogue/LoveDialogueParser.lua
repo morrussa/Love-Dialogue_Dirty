@@ -190,18 +190,18 @@ function Parser.parseFile(filePath)
                 print("Invalid @portrait line: " .. line)
             end
         end
-        local characterPath = line:match("@Character%s+([^#%s]+)")
-        if characterPath then
-            local character, error = CharacterParser.parseCharacter(characterPath)
+        -- local characterPath = line:match("@Character%s+([^#%s]+)")
+        -- if characterPath then
+        --     local character, error = CharacterParser.parseCharacter(characterPath)
 
-            if error or character == nil then
-                print("Error parsing character file:", error)
-            else
-                for _, c in ipairs(character) do
-                    characters[c.name] = c
-                end
-            end
-        end
+        --     if error or character == nil then
+        --         print("Error parsing character file:", error)
+        --     else
+        --         for _, c in ipairs(character) do
+        --             characters[c.name] = c
+        --         end
+        --     end
+        -- end
     end
 
     -- First pass: Handle portrait definitions
